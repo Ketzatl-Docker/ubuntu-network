@@ -5,14 +5,18 @@ services:
   ubuntu-network:
     container_name: ubuntu-network-3
     image: tukho/ubuntu-network:1.0.0
-    network_mode: test-network
+    networks: test-network
+    volumes:
+      - ./Dossiers
     build:
       context: .
       dockerfile: Dockerfile
   ubuntu-network-2:
     container_name: ubuntu-network-4
     image: tukho/ubuntu-network:1.0.0
-    network_mode: test-network
+    networks: test-network
+    volumes:
+      - ./Dossiers
     build:
       context: .
       dockerfile: Dockerfile
