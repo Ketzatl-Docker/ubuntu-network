@@ -1,0 +1,19 @@
+#docker-compose file
+version: '1.0.0'
+
+services:
+  ubuntu-network:
+    container_name: ubuntu-network-4
+    image: tukho/ubuntu-network:1.0.0
+    network_mode: test-network
+    build:
+      context: .
+      dockerfile: Dockerfile
+  ubuntu-network-2:
+    container_name: ubuntu-network-5
+    image: tukho/ubuntu-network:1.0.0
+    network_mode: test-network
+    build:
+      context: .
+      dockerfile: Dockerfile
+
