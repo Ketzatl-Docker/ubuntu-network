@@ -2,20 +2,39 @@
 version: '1.0.0'
 
 services:
-  ubuntu-network:
-    container_name: ubuntu-network-3
+  ubuntu-network-1:
+    container_name: ubuntu-network-1
     image: tukho/ubuntu-network:1.0.0
+    # this volume will be shared by the 2 containers
+    volumes:
+      - volume-test:/tmp
+    entrypoint:
+      - bash
+    # tty & stdin_open allows the container to keep running until you stop it
+    tty: true
+    stdin_open: true
     build:
       context: .
       dockerfile: Dockerfile
+
   ubuntu-network-2:
-    container_name: ubuntu-network-4
+    container_name: ubuntu-network-2
     image: tukho/ubuntu-network:1.0.0
+    volumes:
+      - volume-test:/tmp
+    entrypoint:
+      - bash
+    tty: true
+    stdin_open: true
     build:
       context: .
       dockerfile: Dockerfile
 
 networks:
+# this network will be shared by the 2 containers
   default:
     external:
       name: test-network
+
+volumes:
+  volume-test:
